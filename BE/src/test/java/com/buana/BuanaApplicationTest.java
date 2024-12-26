@@ -1,10 +1,10 @@
-package com.example.crud.crud;
+package com.buana;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CrudApplicationTests {
+class BuanaApplicationTest {
 
 	@Test
 	void contextLoads() {
