@@ -26,7 +26,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator
-    @Column(columnDefinition = "VARCHAR(36)")
+    @Column(columnDefinition = "VARCHAR(36)", name = "id", nullable = false)
     private String id;
 
     @Column(nullable = false)
