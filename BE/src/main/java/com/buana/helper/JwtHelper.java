@@ -16,9 +16,11 @@ import com.buana.exceptions.AccessDeniedException;
 
 public class JwtHelper {
 
+  @SuppressWarnings("deprecation")
   private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
   private static final int MINUTES = 60;
 
+  @SuppressWarnings("deprecation")
   public static String generateToken(String email) {
     var now = Instant.now();
     return Jwts.builder()
@@ -38,6 +40,7 @@ public class JwtHelper {
     return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
   }
 
+  @SuppressWarnings("deprecation")
   private static Claims getTokenBody(String token) {
     try {
       return Jwts
