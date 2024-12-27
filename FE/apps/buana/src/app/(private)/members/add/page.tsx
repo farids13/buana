@@ -1,4 +1,5 @@
 import EventAddressForm from "@/components/forms/event-address-form";
+import MemberForm from "@/components/forms/member-form";
 import type { ReactElement } from "react";
 import React from "react";
 

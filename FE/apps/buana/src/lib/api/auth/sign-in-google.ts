@@ -12,7 +12,7 @@ export const useSignInGoogle = () => {
 
   return useMutation({
     mutationFn: async (data: SignInGoogleFormValues) => {
-      const response = await httpClient.post<AuthResponse>("/auth/signInGoogle", {
+      const response = await httpClient.post<AuthResponse>("/auth/login/google", {
         ...data,
         deviceId: v4(),
       });

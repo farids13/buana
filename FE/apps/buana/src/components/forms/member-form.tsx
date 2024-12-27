@@ -4,25 +4,20 @@ import type { ReactElement } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "@/components/ui/input";
-import TextArea from "@/components/ui/textarea";
 import { Button } from "primereact/button";
-import Dropdown from "../ui/dropdown";
-import { useGetProvince } from "@/lib/api/province/get-province";
-import { useGetDistrict } from "@/lib/api/district/get-district-by-province";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useGetDetailMember } from "@/lib/api/member/get-detail-member";
-import type { MemberFormSchema } from "@/lib/validations/member";
-import { memberFormSchema } from "@/lib/validations/member";
-import { useInsertMember } from "@/lib/api/member/insert-member";
-import { useUpdateMember } from "@/lib/api/member/update-member";
 import { useTranslation } from "react-i18next";
+import { useGetDetailMember } from "@/lib/api/member/get-detail-member";
+import { useInsertMember } from "@/lib/api/member/insert-member";
+import { type MemberForm, memberFormSchema } from "@/lib/validations/member";
+import { useUpdateMember } from "@/lib/api/member/update-member";
 
 type MemberFormProps = {
   edit?: boolean;
 };
 
-export default function MemberForm({
+export default function MemberFormFunction({
   edit,
 }: MemberFormProps): ReactElement {
   const params = useParams<{ id: string }>();
@@ -34,7 +29,7 @@ export default function MemberForm({
   const insertMember = useInsertMember();
   const updateMember = useUpdateMember();
 
-  const methods = useForm<MemberFormSchema>({
+  const methods = useForm<MemberForm>({
     resolver: zodResolver(memberFormSchema),
     values,
     resetOptions: {
@@ -42,23 +37,21 @@ export default function MemberForm({
     },
   });
 
-  const { handleSubmit, watch } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = handleSubmit((data) => {
     edit
       ? updateMember.mutate({
-        ...data,
-        id,
+        body: data,
+        memberId: id,
       })
       : insertMember.mutate(data, {
         onSuccess: () => {
-          router.push("/data-master/address");
+          router.push("/member");
         },
       });
   });
 
-  const province = useGetProvince();
-  const district = useGetDistrict(watch("provinceId"));
   const { t } = useTranslation();
 
   return (
@@ -70,29 +63,15 @@ export default function MemberForm({
           void onSubmit();
         }}
       >
-        <Input float id="location" label={t("Location")} />
-        <Dropdown
-          filter
-          float
-          id="provinceId"
-          label={t("Province")}
-          loading={province.isLoading}
-          optionLabel="province"
-          optionValue="id"
-          options={province.data}
-        />
-        <Dropdown
-          filter
-          float
-          id="districtId"
-          label={t("District")}
-          loading={district.isLoading}
-          optionLabel="district"
-          optionValue="id"
-          options={district.data}
-        />
-
-        <TextArea float id="address" label={t("Address")} />
+        <Input float id="name" label={t("Name")} />
+        <Input float id="email" label={t("Email")} type="email" />
+        <Input float id="phone" label={t("Phone")} />
+        <Input float id="position" label={t("Position")} />
+        <Input float id="departement" label={t("Department")} />
+        
+        <Input float id="superior" label={t("Superior")} />
+        
+        <Input float id="imgUrl" label={t("Profile Image")} type="file" />
 
         <div className="tw-flex tw-justify-between">
           <div className="tw-flex tw-gap-4">
@@ -107,7 +86,7 @@ export default function MemberForm({
               outlined
               type="submit"
             />
-            <Link href="/data-master/address">
+            <Link href="/member">
               <Button id="cancel-button-address-master" label={t("Cancel")} type="button" />
             </Link>
           </div>

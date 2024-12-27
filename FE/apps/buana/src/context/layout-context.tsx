@@ -135,10 +135,10 @@ export function LayoutProvider(props: ChildContainerProps): ReactElement {
     <LayoutContext.Provider value={value}>
       <>
         <Head>
-          <title>Notulensia</title>
+          <title>Buana</title>
           <meta charSet="UTF-8" />
           <meta
-            content="Notulensia Apps - Schedule and Meeting Management"
+            content="Buana Apps"
             name="description"
           />
           <meta content="index, follow" name="robots" />

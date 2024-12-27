@@ -44,15 +44,11 @@ function AppSidebar({sidebarRef} : {sidebarRef: React.RefObject<HTMLDivElement>}
     <div className="layout-sidebar tw-h-full top-0 tw-rounded-r-xl" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} ref={sidebarRef}>
       <div className="layout-menu-container tw-mt-2">
         <div className="layout-sidebar-top">
-          <div className="layout-sidebar-logo tw-text-2xl tw-font-bold tw-text-center">
-            <span className="tw-bg-gradient-to-r tw-from-primary-500 tw-to-secondary-500 tw-bg-clip-text tw-text-transparent tw-font-sans">
-              Buana
-            </span>
+          <div className="layout-sidebar-logo tw-text-3xl tw-font-bold tw-text-[#4343BF] ">
+            Buana
           </div>
           <div className="layout-sidebar-logo-slim tw-mx-auto tw-text-2xl tw-font-bold tw-text-center">
-            <span className="tw-bg-gradient-to-r tw-from-primary-500 tw-to-secondary-500 tw-bg-clip-text tw-text-transparent tw-font-sans">
-              B
-            </span>
+            B
           </div>
           <Tooltip content={t('Sidebar Button')} position="bottom" target="#layout-sidebar-anchor" />
           <button

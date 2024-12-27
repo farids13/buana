@@ -21,7 +21,7 @@ function AppMenu(): ReactElement {
         {
           icon: <TbUser color="#4343BF" size={size} />,
           label: t("Data Member"),
-          to: "/member",
+          to: "/members",
         },
       ],
     },
