@@ -19,8 +19,10 @@ import com.buana.dto.auth.LoginDto;
 import com.buana.dto.auth.LoginResponseDto;
 import com.buana.dto.auth.RegisterDto;
 import com.buana.dto.error.ApiErrorDto;
+import com.buana.dto.google.GoogleDTO;
 import com.buana.helper.JwtHelper;
 import com.buana.model.User;
+import com.buana.service.GoogleService;
 import com.buana.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,8 +39,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
 
-
-    public AuthController(AuthenticationManager authenticationManager, UserService userService) {
+    public AuthController(AuthenticationManager authenticationManager, UserService userService, GoogleService googleService) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
     }
@@ -78,6 +79,32 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             System.out.println("Autentikasi gagal: " + e.getMessage());
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+        }
+    }
+
+    @Operation(summary = "Login with google")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+        description = "Req For Google Login",
+        required = true,
+        content = @Content(schema = @Schema(implementation = GoogleDTO.Request.class))
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "User logged in successfully", content = @Content(schema = @Schema(implementation = LoginResponseDto.class))),
+        @ApiResponse(responseCode = "401", description = "Invalid credentials", content = @Content(schema = @Schema(implementation = ApiErrorDto.class))),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(schema = @Schema(implementation = ApiErrorDto.class)))
+    })
+    @PostMapping("/login/google")
+    public ResponseEntity<LoginResponseDto> loginWithGoogle(@Valid @RequestBody GoogleDTO.Request req) {
+        try {
+            System.out.println("Mencoba login dengan google");
+            User user = userService.signInGoogle(req);
+            System.out.println("User Ditemukan");
+            // authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+            String token = JwtHelper.generateToken(user.getEmail());
+            return ResponseEntity.ok(new LoginResponseDto(token, user.getEmail()));
+        } catch (Exception e) {
+            System.out.println("Autentikasi gagal: " + e.getMessage());
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage().toString());
         }
     }
 

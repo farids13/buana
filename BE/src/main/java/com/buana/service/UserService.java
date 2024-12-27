@@ -1,6 +1,11 @@
 package com.buana.service;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,8 +13,11 @@ import org.springframework.stereotype.Service;
 
 import com.buana.dto.auth.LoginDto;
 import com.buana.dto.auth.RegisterDto;
+import com.buana.dto.google.GoogleDTO;
 import com.buana.model.User;
 import com.buana.repository.UserRepository;
+
+import jakarta.validation.ValidationException;
 
 
 @Service
@@ -20,6 +28,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private GoogleService googleService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -77,8 +88,24 @@ public class UserService {
         return user;
     }
 
-	public User getUserByEmail(String email) {
-		return userRepository.findByEmailInSchema(email).orElseThrow(() -> new RuntimeException("User not found"));
-	}
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmailInSchema(email).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public User signInGoogle(GoogleDTO.Request req) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+        System.out.println("Request: " + req);
+        GoogleDTO.Response res = googleService.getGoogleAccount(req.token());
+        String email = res != null ? res.emailAddresses().get(0).value() : null;
+        if(email == null || email.isEmpty()) throw new ValidationException("User not found");
+
+        System.out.println("Email: " + email);
+
+        User user = getUserByEmail(email);
+        if (user == null) {
+            throw new ValidationException("User not found");
+        }
+
+        return user;
+    }
 
 }
