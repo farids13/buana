@@ -3,15 +3,7 @@ module.exports = {
     NodeJS: true,
   },
   extends: ["custom/next"],
-  settings: {
-    'import/resolver': {
-      typescript: {
-        directory: './tsconfig.json',
-      },
-    },
-  },
   rules: {
-    "import/no-unused-modules": ["warn"],
     "import/no-extraneous-dependencies": ["off"],
     "jsx-a11y/img-redundant-alt": ["off"],
     "jsx-a11y/anchor-is-valid": ["off"],
@@ -26,7 +18,7 @@ module.exports = {
     "@typescript-eslint/no-unsafe-assignment": ["off"],
     "@typescript-eslint/no-unnecessary-condition": ["off"],
     "@typescript-eslint/no-non-null-assertion": ["off"],
-    "@typescript-eslint/no-explicit-any": ["warn"],
+    "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/no-unsafe-member-access": ["off"],
     "@typescript-eslint/no-unsafe-argument": ["off"],
     "@typescript-eslint/unbound-method": ["off"],
@@ -35,16 +27,11 @@ module.exports = {
     "no-unused-vars": ["off"],
     "no-bitwise": ["off"],
     "no-shadow": "off",
-    "import/order": ["warn"],
-    "import/no-unresolved": ["off"],
+    "import/order": ["off"],
     "react-hooks/exhaustive-deps": ["off"],
     "turbo/no-undeclared-env-vars": ["off"],
     "@next/next/no-img-element": ["off"],
     "@next/next/no-css-tags": ["off"],
     "@next/next/no-document-import-in-page": ["off"],
-    "@typescript-eslint/no-extraneous-class": ["warn"],
-    "no-console": ["warn"],
-    "react/no-unstable-nested-components": ["warn"],
-    "@typescript-eslint/no-unsafe-return": ["warn"],
   },
 };

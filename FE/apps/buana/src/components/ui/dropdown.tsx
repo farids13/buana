@@ -50,7 +50,7 @@ export default function Dropdown({
             "p-error": error,
           })}
         >
-          {label} {required ? <span className="tw-text-red-600 tw-text-xs" style={{color: 'red'}}>*</span> : null}
+          {label}
         </p>
       )}
       <Controller
@@ -77,7 +77,7 @@ export default function Dropdown({
                 })}
                 htmlFor={field.name}
               >
-                {label} {required ? <span className="tw-text-red-600 tw-text-xs" style={{color: 'red'}}>*</span> : null}
+                {label} {required ? <span className="tw-text-red-600 tw-text-xs">*</span> : null}
               </label>
             ) : null}
           </span>

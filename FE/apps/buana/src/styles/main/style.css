@@ -1,0 +1,17 @@
+:root {
+    --scale-factor: 1;
+  }
+  
+  
+  .layout {
+    transform: scale(var(--scale-factor));
+    transition: transform 0.3s ease;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .layout {
+        width: 600px;
+        transform: scale(var(--scale-factor));
+    }
+  }

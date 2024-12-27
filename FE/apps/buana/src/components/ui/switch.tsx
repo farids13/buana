@@ -13,10 +13,9 @@ type SwitchProps = {
    * */
   id: string;
   validation?: RegisterOptions;
-  defaultValue?: boolean;
 };
 
-export default function Switch({ label, id, validation, defaultValue = false }: SwitchProps) {
+export default function Switch({ label, id, validation }: SwitchProps) {
   const {
     formState: { errors },
     control,
@@ -26,30 +25,26 @@ export default function Switch({ label, id, validation, defaultValue = false }: 
   return (
     <Controller
       control={control}
-      defaultValue={defaultValue}
       name={id}
       render={({ field }) => {
         return (
           <>
-           <label
-                className={classNames( { "p-error": error })}
-                htmlFor={field.name}
-              >
-                {label}
-              </label>
-            <div className="tw-flex tw-items-center">
+            <div className="tw-flex tw-items-center !tw-mt-2">
               <InputSwitch
                 checked={field.value}
-                className={classNames(
-                  { "p-invalid": error },
-                  "tw-rounded-full"
-                )}
+                className={classNames({ "p-invalid": error })}
                 inputId={field.name}
                 inputRef={field.ref}
                 onChange={(e) => {
                   field.onChange(e.value);
                 }}
               />
+              <label
+                className={classNames("ml-2", { "p-error": error })}
+                htmlFor={field.name}
+              >
+                {label}
+              </label>
             </div>
             {error ? (
               <small className="p-error">{error.message?.toString()}</small>

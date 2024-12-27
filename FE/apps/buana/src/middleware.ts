@@ -1,48 +1,24 @@
-import { createServerClient } from '@supabase/ssr'
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import {NextResponse} from "next/server";
+import type {NextRequest} from "next/server";
 
-const protectedRoutes = ["/", "/dashboard"];
-const loginRoutes = "/auth/login2";
-const publicRoutes = [loginRoutes];
+const uuidv4 = (): string => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
 
-export default async function middleware(req: NextRequest) {
-  const path = req.nextUrl.pathname;
+export function middleware(request: NextRequest): NextResponse {
+  const isDeviceId = request.cookies.has("deviceId");
   const response = NextResponse.next();
-  const isProtectedRoute = protectedRoutes.includes(path);
-  const isPublicRoute = publicRoutes.includes(path);
 
-  // const supabase = createServerClient(
-  //   process.env.NEXT_PUBLIC_SUPA_API_URL!,
-  //   process.env.NEXT_PUBLIC_SUPA_ANON_KEY!,
-  //   {
-  //     cookies: {
-  //       get(name: string) {
-  //         return req.cookies.get(name)?.value
-  //       },
-  //     },
-  //   }
-  // )
-
-  // const { data: { session } } = await supabase.auth.getSession()
-  
-  // console.log("Session status:", !!session)
-
-  // // Jalur Protected
-  // if (isProtectedRoute) {
-  //   return NextResponse.redirect(new URL(loginRoutes, req.nextUrl));
-  // }
-  
-  // // Jalur Public
-  // if (isPublicRoute) {
-  //   return NextResponse.redirect(new URL("/", req.nextUrl));
-  // }
-
+  if (!isDeviceId) {
+    const uuid = uuidv4();
+    response.headers.set(
+      "Set-Cookie",
+      `deviceId=${uuid}; ${process.env.COOKIE_OPTIONS}`
+    );
+  }
   return response;
-}
-
-export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
 }

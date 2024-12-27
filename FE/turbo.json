@@ -10,18 +10,6 @@
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "devwin": {
-      "cache": false,
-      "persistent": true
-    },
-    "dev:winrama": {
-      "cache": false,
-      "persistent": true
-    },
-    "dev:rama": {
-      "cache": false,
-      "persistent": true
     }
   }
 }

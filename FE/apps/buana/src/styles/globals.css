@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@200;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300;400;500;600;700;800&display=swap');
+@layer tailwind-base, primereact, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+
+  html {
+    font-size: 16px !important;
+  }
+
+  .layout {
+    background: linear-gradient(-150deg, #8F4AD7 50%, #DF3B9A);
+    @apply tw-min-h-screen tw-w-full tw-absolute;
+  }
+
+  .layout > div {
+    @apply tw-relative tw-z-10;
+  }
+
+  .landing-button {
+    @apply !tw-px-16 !tw-py-5 tw-w-full lg:tw-w-auto !tw-rounded-xl !tw-bg-indigo-700 tw-shadow-[7px_7px_7px_0px_#00000040] tw-shadow-[0px_0px_4px_4px_#00000033_inset] !tw-border-none;
+  }
+
+  .landing-button:focus {
+    box-shadow: 0 0 0 0.2rem rgb(67 67 191 / 50%) !important;
+  }
+
+  .hero {
+    background: rgb(114, 194, 217);
+    background: -moz-linear-gradient(
+      90deg,
+      rgba(114, 194, 217, 1) 33%,
+      rgba(106, 160, 243, 1) 66%,
+      rgba(105, 155, 247, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(114, 194, 217, 1) 33%,
+      rgba(106, 160, 243, 1) 66%,
+      rgba(105, 155, 247, 1) 100%
+    );
+    background: linear-gradient(
+      90deg,
+      rgba(114, 194, 217, 1) 33%,
+      rgba(106, 160, 243, 1) 66%,
+      rgba(105, 155, 247, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#72c2d9",endColorstr="#699bf7",GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* #region  /**=========== Typography =========== */
+  .h0 {
+    @apply tw-text-dark-purple tw-text-3xl tw-font-bold md:tw-text-5xl;
+  }
+
+  h1,
+  .h1 {
+    @apply tw-text-dark-purple tw-text-2xl tw-font-bold md:tw-text-4xl;
+  }
+
+  h2,
+  .h2 {
+    @apply tw-text-dark-purple tw-text-xl tw-font-bold md:tw-text-3xl;
+  }
+
+  h3,
+  .h3 {
+    @apply tw-text-dark-purple tw-text-lg tw-font-bold md:tw-text-2xl;
+  }
+
+  h4,
+  .h4 {
+    @apply tw-text-dark-purple tw-text-base tw-font-bold md:tw-text-lg;
+  }
+
+  body,
+  p,
+  .p {
+    @apply tw-text-dark-purple tw-text-sm md:tw-text-base;
+  }
+
+  /* #endregion  /**======== Typography =========== */
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}

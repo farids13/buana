@@ -4,7 +4,6 @@
     "build": "turbo run build --parallel",
     "dev": "turbo run dev --parallel",
     "dev:buana": "turbo run dev --filter=buana --parallel",
-    "devwin:buana": "turbo run devwin --filter=buana --parallel",
     "lint": "turbo run lint --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -15,18 +14,17 @@
     "tsconfig": "*",
     "turbo": "^1.13.4"
   },
-  "name": "platform-web-apps",
+  "name": "platform-buana",
   "packageManager": "npm@8.19.3",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "dependencies": {
-    "@tanstack/react-query": "^5.62.10",
-    "@tanstack/react-query-devtools": "^5.62.10",
-    "react-hook-form": "^7.54.2",
-    "react-toastify": "^11.0.2",
-    "winston": "^3.17.0",
-    "zod": "^3.24.1"
+    "framer-motion": "^11.15.0",
+    "i18next": "^24.2.0",
+    "react-i18next": "^15.2.0",
+    "react-transition-group": "^4.4.5",
+    "winston": "^3.17.0"
   }
 }

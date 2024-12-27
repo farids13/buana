@@ -1,0 +1,87 @@
+{
+    "Sign In": "Sign In",
+    "Login": "Login",
+    "Login With Google": "Login With Google",
+
+    "Event Category" : "Event Category",
+    "Total Events" : "Total Events",
+
+    "Add Events" : "Add Events",
+    "Export": "Export",
+    "Action": "Action",
+    "Event Name" : "Event Name",
+    "Start" : "Start",
+    "End" : "End",
+    "Status" : "Status",
+    "Event Phase": "Event Phase",
+
+    "Topic" : "Topic",
+    "Purpose" : "Purpose",
+    "Preparation Notes" : "Preparation Notes",
+    "Start Date" : "Start Date",
+    "End Date" : "End Date",
+    "Schedule Program": "Schedule Program",
+    "Date": "Date",
+    "Activity" : "Activity",
+    "Start Time" : "Start Time",
+    "End Time" : "End Time",
+    "PIC Name" : "PIC Name",
+    "Note" : "Note",
+    "Add" : "Add",
+    "Attachment files" : "Attachment files",
+    "Name" : "Name",
+    "Format" : "Format",
+    "Via Online" : "Via Online",
+    "Location" : "Location",
+    "Province" : "Province",
+    "District" : "District",
+    "Address" : "Address",
+    "Location Name" : "Location Name",
+
+    "Add Event Address" : "Add Event Address",
+    "Edit Event Address" : "Edit Event Address",
+    "Add Event Category" : "Add Event Category",
+    "Edit Event Category" : "Edit Event Category",
+    "Edit Event" : "Edit Event",
+    "Add Audience Group": "Add Audience Group",
+    "Edit Audience Group": "Edit Audience Group",
+    "Event Category Name" : "Event Category Name",
+
+    "Delete Confirmation": "Delete Confirmation",
+    "Do you want to delete this record?" : "Do you want to delete this record?",
+    "Yes" : "Yes",
+    "No" : "No",
+
+    "Description" : "Description",
+    "Total Audience" : "Total Audience",
+
+    "Audience List" : "Audience List",
+    "Job": "Job",
+    "Phone Number" : "Phone Number",
+
+    "Notification Type" : "Notification Type",
+    "Select you’re notifications type." : "Select you’re notifications type.",
+    "Dashboard Priority" : "Dashboard Priority",
+
+    "Upload Logo" : "Upload Logo",
+    "Preview" : "Preview",
+
+    "Search" : "Search",
+    "Save" : "Save",
+    "Draft" : "Draft",
+    "Cancel" : "Cancel",
+    "Save As Preset":  "Save As Preset",
+
+
+    "Home" : "Home",
+    "Events": "Events",
+    "Calendar": "Calendar",
+    "Data Master": "Data Master",
+    "Audience Group": "Audience Group",
+    "Setting": "Setting",
+    "Profile" : "Profile",
+    "Log Out" : "Log Out",
+    "Change Image" : "Change Image",
+    "Help" : "Help"
+
+}

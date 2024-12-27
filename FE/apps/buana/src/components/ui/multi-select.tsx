@@ -11,7 +11,7 @@ export type MultiSelectProps = {
     id: string;
     validation?: RegisterOptions
     float?: boolean;
-    options: unknown[];
+    options: any[];
     required?: boolean;
     loading?: boolean;
 } & PrimeMultiSelectProps;
@@ -23,6 +23,7 @@ export default function MultiSelect({
     float = false,
     options,
     required,
+    loading,
 }: MultiSelectProps): ReactElement {
 
     const { formState: { errors }, control, setValue, getValues } = useFormContext();
@@ -48,7 +49,7 @@ export default function MultiSelect({
                 control={control}
                 name={id}
                 render={({ field }) => (
-                    <span className={classNames({ "p-float-label mt-5": float })}>
+                    <span className={classNames({ "p-float-label": float })}>
                         <PrimeMultiSelect
                             className={classNames(
                                 { "p-invalid": error },
@@ -69,7 +70,7 @@ export default function MultiSelect({
                                 })}
                                 htmlFor={id}
                             >
-                                {label} {required ? <span className="tw-text-red-600 tw-text-xs" style={{color: 'red'}}>*</span> : null}
+                                {label} {required ? <span className="tw-text-red-600 tw-text-xs">*</span> : null}
                             </label>
                         ) : null}
                     </span>
