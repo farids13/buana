@@ -14,7 +14,6 @@ function AppSidebar({sidebarRef} : {sidebarRef: React.RefObject<HTMLDivElement>}
   let timeout: NodeJS.Timeout | null = null;
   const { layoutState, setLayoutState } = useContext(LayoutContext);
   const { data } = useGetUserDetail();
-  const file = useGetFile("asset", data?.logoUrl);
   const {t} = useTranslation();
 
   const onMouseEnter = (): void => {
@@ -51,7 +50,7 @@ function AppSidebar({sidebarRef} : {sidebarRef: React.RefObject<HTMLDivElement>}
             alt="Logo Top"
             className="layout-sidebar-logo"
             height={45}
-            src={file.data ? URL.createObjectURL(file.data) : "/svg/logo.svg"}
+            src={ "/svg/logo.svg"}
             style={{ maxWidth: '280px', maxHeight: '45px', objectFit: 'contain', }}
             width={280}
           />

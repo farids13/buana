@@ -26,13 +26,13 @@ export default function AuthProvider({
 
   //#region  //*=========== STORE ===========
   const logout = useAuthStore((state) => state.logout);
-  const isAuthenticated = Boolean(useAuthStore((state) => state.access_token));
+  const isAuthenticated = Boolean(useAuthStore((state) => state.accessToken));
   //#endregion  //*======== STORE ===========
 
   useEffect(() => {
     // run checkAuth every page visit
     const checkAuth = useAuthStore.subscribe(
-      (state) => state.access_token,
+      (state) => state.accessToken,
       (accessToken) => {
         if (!accessToken) {
           logout();

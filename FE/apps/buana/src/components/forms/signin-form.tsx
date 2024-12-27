@@ -100,7 +100,7 @@ export default function SignInForm(): ReactElement {
         className="w-full !tw-p-4 !tw-mt-8"
         icon="pi pi-google"
         label={t('Login With Google')}
-        loading={isPendingGoogle || isLoading}
+        loading={isPendingGoogle}
         onClick={handleGoogleAuth}
         type="button"
       />

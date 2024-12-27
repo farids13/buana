@@ -10,12 +10,13 @@ import { FaRegUser } from "react-icons/fa";
 import Image from "next/image";
 import { LayoutContext } from "@/context/layout-context";
 import { useAuthStore } from "@/stores/use-auth-store";
-import { useDownloadUserImage, useGetUserDetail } from "@/lib/api/user/get-user-detail";
+// import { useDownloadUserImage, useGetUserDetail } from "@/lib/api/user/get-user-detail";
 import { FaLanguage } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 import { Button } from "primereact/button";
 import { OverlayPanel } from "primereact/overlaypanel";
 import { truncateText } from "@/utils/string-utils";
+import { useGetUserDetail } from "@/lib/api/user/get-user-detail";
 
 function AppMenuProfile(): ReactElement {
   const logout = useAuthStore((state) => state.logout);
@@ -32,8 +33,6 @@ function AppMenuProfile(): ReactElement {
   const ulRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const getImg = useDownloadUserImage();
-  const { data: downloadedImage } = getImg;
   const [image, setImage] = useState<string | null>(null);
   const {t, i18n} = useTranslation();
 
@@ -93,18 +92,18 @@ function AppMenuProfile(): ReactElement {
     return isSlim() ? tooltipText : null;
   };
 
-  useEffect(() => {
-    if (data?.imgUrl) {
-      getImg.mutate(); 
-    }
-  }, [data?.imgUrl]);
+  // useEffect(() => {
+  //   if (data?.imgUrl) {
+  //     getImg.mutate(); 
+  //   }
+  // }, [data?.imgUrl]);
 
-  useEffect(() => {
-    if (downloadedImage instanceof Blob) {
-      const objectUrl = URL.createObjectURL(downloadedImage);
-      setImage(objectUrl);
-    }
-  }, [downloadedImage]);
+  // useEffect(() => {
+  //   if (downloadedImage instanceof Blob) {
+  //     const objectUrl = URL.createObjectURL(downloadedImage);
+  //     setImage(objectUrl);
+  //   }
+  // }, [downloadedImage]);
   
 
   return (
@@ -124,7 +123,7 @@ function AppMenuProfile(): ReactElement {
         />
         <span>
           <b className="tw-text-xl">{truncateText(data?.name, 18)} </b>
-          <p className="tw-text-xs">{data?.phoneNumber}</p>
+          <p className="tw-text-xs">{data?.email}</p>
         </span>
         <i
           className={classNames(

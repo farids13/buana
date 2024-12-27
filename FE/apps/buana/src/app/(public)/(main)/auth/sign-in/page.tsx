@@ -1,7 +1,6 @@
 import type { ReactElement } from "react";
 import React from "react";
 import SignInForm from "@/components/forms/signin-form";
-import Link from "next/link";
 
 export default function SignInPage(): ReactElement {
   return (

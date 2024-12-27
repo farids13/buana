@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.buana.helper.JwtHelper;
 import com.buana.model.User;
 import com.buana.service.UserService;
 import com.buana.dto.error.ApiErrorDto;
+import com.buana.helper.JwtHelper;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -30,12 +31,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"}, 
-    allowedHeaders = {"Authorization", "Content-Type"},
-    exposedHeaders = {"Authorization"},
-    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -128,13 +125,21 @@ public class UserController {
         @ApiResponse(responseCode = "401", description = "Unauthorized")
     })
     @GetMapping("/me")
-    public ResponseEntity<User> getCurrentUser(@Parameter(hidden = true) @RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> me(@RequestHeader("Authorization") String token) {
         try {
-            String email = JwtHelper.extractUsername(token.substring(7));
+            if (token == null || !token.startsWith("Bearer ")) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token tidak valid");
+            }
+            String jwtToken = token.substring(7);
+            String email = JwtHelper.extractUsername(jwtToken);
             User user = userService.getUserByEmail(email);
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User tidak ditemukan");
+            }
             return ResponseEntity.ok(user);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body("Gagal memverifikasi token: " + e.getMessage());
         }
     }
 }

@@ -4,6 +4,7 @@
     "build": "turbo run build --parallel",
     "dev": "turbo run dev --parallel",
     "dev:buana": "turbo run dev --filter=buana --parallel",
+    "dev:buana-apps": "turbo run dev --filter=buana-apps --parallel",
     "lint": "turbo run lint --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -23,6 +24,7 @@
   "dependencies": {
     "framer-motion": "^11.15.0",
     "i18next": "^24.2.0",
+    "primereact": "^10.8.5",
     "react-i18next": "^15.2.0",
     "react-transition-group": "^4.4.5",
     "winston": "^3.17.0"

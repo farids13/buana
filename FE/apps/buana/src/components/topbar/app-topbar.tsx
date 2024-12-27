@@ -9,8 +9,8 @@ import type { AppTopbarRef } from "@/types/layout";
 
  const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
     const { onMenuToggle, onTopbarMenuToggle } = useContext(LayoutContext);
-    const { data } = useGetUserDetail();
-    const file = useGetFile("asset", data?.logoUrl);
+    // const { data } = useGetUserDetail();
+    // const file = useGetFile("asset", data?.logoUrl);
     const menubuttonRef = useRef(null);
     useImperativeHandle(ref, () => ({
         menubutton: menubuttonRef.current,
@@ -19,14 +19,9 @@ import type { AppTopbarRef } from "@/types/layout";
     return (
         <div className="layout-topbar">
             <div className="layout-topbar-start">
-                <Image
-                    alt="profile"
-                    className="tw-w-[280px] max-md:tw-w-[230px] max-sm:tw-w-[180px] "
-                    height={6}
-                    src={file.data ? URL.createObjectURL(file.data) : "/svg/logo.svg"}
-                    style={{ maxWidth: '280px', maxHeight: '45px', objectFit: 'contain' }}
-                    width={38}
-                />
+                <span className="tw-text-2xl tw-font-bold max-md:tw-text-xl max-sm:tw-text-lg">
+                    Buana
+                </span>
                 <button className="p-ripple layout-menu-button" onClick={() => { onMenuToggle() }} type="button">
                     <i className="pi pi-angle-right" />
                 </button>
