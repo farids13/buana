@@ -86,12 +86,6 @@ export default function SignInForm(): ReactElement {
             <Input float id="password" label="Password" type="password" />
           </div>
 
-          <Link
-            className="tw-text-white tw-flex tw-justify-end tw-text-sm"
-            href="#"
-          >
-            Forgot Password?
-          </Link>
 
           <Button
             className="w-full !tw-p-4 !tw-mt-8"
@@ -110,6 +104,12 @@ export default function SignInForm(): ReactElement {
         onClick={handleGoogleAuth}
         type="button"
       />
+      <div className="tw-mt-4 tw-text-center">
+        <span className="tw-text-white">{t('Don\'t have an account?')} </span>
+        <Link href="/auth/sign-up" className="tw-text-white tw-font-bold hover:tw-underline">
+          {t('Register')}
+        </Link>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export const useGetUserDetail = () => {
   return useQuery({
     queryKey: [getUserDetailKey],
     queryFn: async () => {
-      const response = await httpClient.get("/user/me");
+      const response = await httpClient.get("/users/me");
       return profileSchema.parse(response.data);
     },
   });

@@ -12,7 +12,7 @@ export const useSignIn = () => {
 
   return useMutation({
     mutationFn: async (data: SignInFormValues) => {
-      const response = await httpClient.post<AuthResponse>("/auth/signin", {
+      const response = await httpClient.post<AuthResponse>("/auth/login", {
         ...data,
         deviceId: v4(),
       });

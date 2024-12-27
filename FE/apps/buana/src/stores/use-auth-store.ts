@@ -7,10 +7,8 @@ import {
 } from "zustand/middleware";
 
 export type AuthResponse = {
-  refresh_token: string;
-  token_type: string;
-  access_token: string;
-  expires_in: number;
+  accessToken: string;
+  email: string;
 };
 
 export type AuthState = Partial<AuthResponse> & {
@@ -26,26 +24,20 @@ export const useAuthStore = create<AuthState>()(
         (set) => ({
           login: (auth) => {
             set(() => ({
-              refresh_token: auth.refresh_token,
-              token_type: auth.token_type,
-              access_token: auth.access_token,
-              expires_in: auth.expires_in,
+              accessToken: auth.accessToken,
+              email: auth.email,
             }));
           },
           logout: () => {
             set(() => ({
-              refresh_token: undefined,
-              token_type: undefined,
-              access_token: undefined,
-              expires_in: undefined,
+              accessToken: undefined,
+              email: undefined,
             }));
           },
           loginWithGoogle: (auth) => {
             set(() => ({
-              refresh_token: auth.refresh_token,
-              token_type: auth.token_type,
-              access_token: auth.access_token,
-              expires_in: auth.expires_in,
+              accessToken: auth.accessToken,
+              email: auth.email,
             }));
           },
         }),
