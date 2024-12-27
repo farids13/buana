@@ -6,36 +6,6 @@
     "Audience Attend List" : "Daftar Hadir Peserta",
     "Attend" : "Hadir",
 
-    "Event Category": "Kategori Acara",
-    "Total Events": "Total Acara",
-
-    "Add Events": "Tambah Acara",
-    "Export": "Ekspor",
-    "Action": "Aksi",
-    "Event Name": "Nama Acara",
-    "Start": "Mulai",
-    "End": "Selesai",
-    "Status": "Status",
-    "Event Phase": "Fase Acara",
-    "Create Schedule Event" : "Buat Jadwal Acara",
-    "Phase" : "Fase",
-    "Save Address" : "Simpan Alamat",
-
-    "Pre Event" : "Pra Acara",
-    "Ongoing Event" : "Acara Berlangsung",
-    "Post Event" : "Pasca Acara",
-
-    "Completed Event" : "Acara Selesai",
-    "Upcoming Event": "Acara Mendatang",
-    "Event Categories" : "Kategori Acara",
-    "Please add audience by audience group" : "Silahkan tambahkan peserta berdasarkan grup",
-    "Add Audience By Group" : "Tambahkan Peserta Dengan Grup",
-    "Select Audience Group" : "Pilih Grup Peserta",
-    "Click To Hide Sidebar" : "Klik untuk menyembunyikan Bilah",
-    "Sidebar Button" : "Bilah Tombol",
-    "Note Meeting" : "Catatan Meeting",
-    "You can write your note here" : "Anda dapat menulis catatan anda di sini",
-
     "Topic": "Topik",
     "Purpose": "Tujuan",
     "Preparation Notes": "Catatan Persiapan",
@@ -57,16 +27,6 @@
     "Province": "Provinsi",
     "District": "Kabupaten",
     "Address": "Alamat",
-    "Location Name": "Nama Lokasi",
-    "Please add schedule program" : "Silakan tambahkan jadwal program",
-    "Please Fill In Start Date and End Date" : "Harap isi Tanggal Mulai dan Tanggal Selesai",
-    "Please add audience" : "Silahkan tambahkan peserta",
-    "Please add attachment files" : "Silahkan tambahkan file lampiran",
-    "Choose" : "Unggah",
-    "Attendance History" : "Riwayat kehadiran",
-    "Filter by date" : "Saring dengan tanggal",
-    "Attended At" : "Hadir Pada",
-    "No Attendance History" : "Tidak Ada Riwayat Kehadiran",
 
     "Add Event Address": "Tambah Alamat Acara",
     "Edit Event Address": "Edit Alamat Acara",
@@ -85,9 +45,6 @@
     "No": "Tidak",
 
     "Description": "Deskripsi",
-    "Total Audience": "Total Audiens",
-
-    "Audience List": "Daftar Peserta",
     "Job": "Pekerjaan",
     "Phone Number": "Nomor Telepon",
 
@@ -125,5 +82,11 @@
     "Profile": "Profil",
     "Log Out": "Keluar",
     "Change Image": "Ubah Gambar",
-    "Help": "Bantuan"
+    "Help": "Bantuan",
+
+    "Register": "Daftar",
+    "Already have an account?": "Sudah punya akun?",
+    "Password must be at least 8 characters": "Password minimal 8 karakter",
+    "Name must be at least 3 characters": "Nama minimal 3 karakter",
+    "Invalid email": "Email tidak valid"
 }

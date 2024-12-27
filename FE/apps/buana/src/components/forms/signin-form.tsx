@@ -21,22 +21,28 @@ export default function SignInForm(): ReactElement {
   const { mutate: google, isError: isErrorGoogle, error: googleError, isPending: isPendingGoogle } = useSignInGoogle();
   const [isLoading, setIsLoading] = useState(false);
   const [isErrorState, setIsErrorState] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (isError || isErrorGoogle) setIsErrorState(true);
+    if (isError || isErrorGoogle) {
+      setIsErrorState(true);
+      setIsLoading(false);
+      setErrorMessage("Email atau password salah");
+    }
     const timeoutId = setTimeout(() => {
       setIsErrorState(false);
+      setErrorMessage("");
     }, 5000);
     return () => { clearTimeout(timeoutId); }
-  }, [isErrorGoogle]);
+  }, [isError, isErrorGoogle]);
 
   const methods = useForm<SignInFormValues>({
     resolver: zodResolver(authSchema),
   });
   const { handleSubmit } = methods;
   const onSubmit = handleSubmit((data) => {
-    mutate({ ...data });
     setIsLoading(true);
+    mutate({ ...data });
   });
 
   const hash = typeof window !== 'undefined' ? window.location.hash : null;
@@ -71,7 +77,7 @@ export default function SignInForm(): ReactElement {
     >
       <h2 className="tw-text-white tw-text-center">{t('Sign In')}</h2>
       <p className="p-error tw-text-center tw-mt-1" id="email-error">
-        {isErrorState ? errorMessages(error || googleError) : null}
+        {isErrorState ? errorMessage : null}
       </p>
       <FormProvider {...methods}>
         <form
