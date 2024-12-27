@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "@/components/ui/input";
+import Dropdown from "@/components/ui/dropdown";
 import { Button } from "primereact/button";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -12,6 +13,7 @@ import { useGetDetailMember } from "@/lib/api/member/get-detail-member";
 import { useInsertMember } from "@/lib/api/member/insert-member";
 import { type MemberForm, memberFormSchema } from "@/lib/validations/member";
 import { useUpdateMember } from "@/lib/api/member/update-member";
+import { useGetMembers } from "@/lib/api/member/get-member";
 
 type MemberFormProps = {
   edit?: boolean;
@@ -29,9 +31,27 @@ export default function MemberFormFunction({
   const insertMember = useInsertMember();
   const updateMember = useUpdateMember();
 
+  const defaultValues: MemberForm = {
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    departement: "",
+    superior: "",
+    imgUrl: ""
+  };
+
   const methods = useForm<MemberForm>({
     resolver: zodResolver(memberFormSchema),
-    values,
+    values: values ? {
+      name: values.name ?? "",
+      email: values.email,
+      phone: values.phone,
+      position: values.position,
+      departement: values.departement,
+      superior: values.superior ?? "",
+      imgUrl: values.imgUrl ?? ""
+    } : defaultValues,
     resetOptions: {
       keepDirtyValues: true,
     },
@@ -47,12 +67,22 @@ export default function MemberFormFunction({
       })
       : insertMember.mutate(data, {
         onSuccess: () => {
-          router.push("/member");
+          router.push("/members");
         },
       });
   });
 
   const { t } = useTranslation();
+
+  const { data: memberList } = useGetMembers({
+    pageIndex: 0,
+    limit: 100
+  });
+
+  const superiorOptions = memberList?.data?.map((member) => ({
+    label: member.name,
+    value: member.id
+  })) || [];
 
   return (
     <FormProvider {...methods}>
@@ -69,7 +99,13 @@ export default function MemberFormFunction({
         <Input float id="position" label={t("Position")} />
         <Input float id="departement" label={t("Department")} />
         
-        <Input float id="superior" label={t("Superior")} />
+        <Dropdown
+          float
+          id="superior"
+          label={t("Superior")}
+          options={superiorOptions}
+          placeholder={t("Select Superior")}
+        />
         
         <Input float id="imgUrl" label={t("Profile Image")} type="file" />
 
@@ -86,7 +122,7 @@ export default function MemberFormFunction({
               outlined
               type="submit"
             />
-            <Link href="/member">
+            <Link href="/members">
               <Button id="cancel-button-address-master" label={t("Cancel")} type="button" />
             </Link>
           </div>

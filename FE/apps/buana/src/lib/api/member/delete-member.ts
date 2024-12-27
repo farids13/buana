@@ -1,16 +1,18 @@
 import { httpClient } from "@/lib/http";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { getEventAddressKey } from "./get-member";
+import { getMemberKey } from "./get-member";
+import { toast } from "react-toastify";
 
-export const useDeleteEventAddress = () => {
+export const useDeleteMember = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (eventAddressId:string) => {
-            await httpClient.delete(`/event/address/${eventAddressId}`);
+        mutationFn: async (memberId: string) => {
+            await httpClient.delete(`/members/${memberId}`);
         },
-        onSuccess : () => {
-            void queryClient.invalidateQueries({ queryKey: [getEventAddressKey]})
+        onSuccess: () => {
+            void queryClient.invalidateQueries({ queryKey: [getMemberKey] });
+            toast.success("Member berhasil dihapus");
         },
     });
 }

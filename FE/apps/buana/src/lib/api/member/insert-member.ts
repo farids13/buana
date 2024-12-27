@@ -3,6 +3,7 @@ import type { MemberForm } from "@/lib/validations/member";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getMemberKey } from "./get-member";
 import { toast } from "react-toastify";
+import router from "next/router";
 
 export const useInsertMember = () => {
   const queryClient = useQueryClient();
@@ -14,6 +15,7 @@ export const useInsertMember = () => {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: [getMemberKey] });
       toast.success("Member created successfully");
+      router.push("/members");
     },
   });
 };

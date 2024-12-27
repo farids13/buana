@@ -22,10 +22,9 @@ public class MemberService {
         List<Member> members;
         
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            // Gunakan method baru dari repository untuk pencarian
-            members = memberRepository.findByNameContainingIgnoreCase(searchTerm);
+            members = memberRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(searchTerm);
         } else {
-            members = memberRepository.findAll();
+            members = memberRepository.findByIsDeletedFalse();
         }
 
         int start = req.pageIndex * req.limit;

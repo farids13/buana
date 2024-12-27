@@ -78,7 +78,7 @@ public class Member {
     @Column(name = "updated_by")
     private String updatedBy;
     
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isDeleted;
     
     @Column(name = "deleted_by")

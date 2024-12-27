@@ -15,4 +15,8 @@ public interface MemberRepository extends JpaRepository<Member, String> {
     
     List<Member> findByNameContainingIgnoreCase(String name);
     
+    List<Member> findByNameContainingIgnoreCaseAndIsDeletedFalse(String name);
+    
+    List<Member> findByIsDeletedFalse();
+    
 }

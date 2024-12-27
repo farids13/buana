@@ -1,43 +1,66 @@
 "use client"
 import type { ReactElement } from "react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { Toast } from 'primereact/toast';
+import { useGetMembers } from "@/lib/api/member/get-member";
+import { ConfirmDialog } from 'primereact/confirmdialog';
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDeleteMember } from "@/lib/api/member/delete-member";
+import { confirmDialog } from 'primereact/confirmdialog';
+import SearchInput from "@/components/ui/search-input";
 
 const Member = (): ReactElement => {
   const { t } = useTranslation();
   const toast = useRef<Toast>(null);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const router = useRouter();
 
-  const members = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
-  ];
+  const deleteMember = useDeleteMember();
 
-  const handleDelete = (id: number) => {
-    toast.current?.show({
-      severity: 'success',
-      summary: 'Success',
-      detail: `Member ${id} deleted successfully`,
-      life: 3000
+  const searchParams = useSearchParams();
+  
+  const search = searchParams?.get("search") ?? "";
+
+  const { data, isLoading, isFetching, error } = useGetMembers({
+    pageIndex,
+    limit: pageSize,
+    search,
+  });
+  
+  const handleDelete = (id: string) => {
+    confirmDialog({
+      message: t('Apakah Anda yakin ingin menghapus member ini?'),
+      header: t('Konfirmasi Hapus'),
+      icon: 'pi pi-info-circle',
+      acceptClassName: 'p-button-danger',
+      acceptLabel: t('Ya'),
+      rejectLabel: t('Tidak'),
+      accept: () => {
+        deleteMember.mutate(id);
+      }
     });
   };
 
-  const handleEdit = (id: number) => {
-    toast.current?.show({
-      severity: 'info',
-      summary: 'Info',
-      detail: `Editing member ${id}`,
-      life: 3000
-    });
+  const handleEdit = (id: string) => {
+    router.push(`/members/edit/${id}`);
   };
 
+  const onPageChange = (event: any) => {
+    setPageSize(event.rows);
+    setPageIndex(event.page);
+  };
+
+  // console.log("data ini om ", data);
   return (
     <div className="grid">
       <Toast ref={toast} />
+      <ConfirmDialog />
       <div className="col-12">
         <div className="card">
           <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
@@ -51,19 +74,28 @@ const Member = (): ReactElement => {
             </Link>
           </div>
 
+          <div className="tw-mb-4">
+            <SearchInput className="tw-w-full md:tw-w-96" />
+          </div>
+
           <DataTable 
-            value={members} 
+            value={data?.data ?? []}
             paginator 
-            rows={10} 
+            rows={pageSize}
+            totalRecords={data?.total ?? 0}
             rowsPerPageOptions={[5, 10, 25, 50]} 
             className="p-datatable-gridlines"
             showGridlines 
-            responsiveLayout="scroll"
+            loading={isLoading || isFetching}
+            lazy
+            onPage={onPageChange}
+            first={pageIndex * pageSize}
           >
-            <Column field="id" header={t('ID')} sortable style={{ width: '10%' }}></Column>
-            <Column field="name" header={t('Name')} sortable style={{ width: '30%' }}></Column>
-            <Column field="email" header={t('Email')} sortable style={{ width: '30%' }}></Column>
-            <Column field="role" header={t('Role')} sortable style={{ width: '20%' }}></Column>
+            <Column field="id" header={t('ID')} style={{ width: '10%' }}></Column>
+            <Column field="name" header={t('Name')}  style={{ width: '25%' }}></Column>
+            <Column field="email" header={t('Email')}  style={{ width: '25%' }}></Column>
+            <Column field="position" header={t('Position')}  style={{ width: '20%' }}></Column>
+            <Column field="departement" header={t('Department')}  style={{ width: '10%' }}></Column>
             <Column 
               body={(rowData) => (
                 <div className="tw-flex tw-gap-2">

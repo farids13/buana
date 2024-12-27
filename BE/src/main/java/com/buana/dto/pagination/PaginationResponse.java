@@ -4,14 +4,14 @@ import java.util.List;
 
 public class PaginationResponse<T> {
 	public List<T> data;
-	public int totalItems;
+	public int total;
 	public int pageIndex;
-	public int totalPages;
+	public int numberOfPages;
 
-	public PaginationResponse(List<T> data, int totalItems, int pageIndex, int totalPages) {
+	public PaginationResponse(List<T> data, int total, int pageIndex, int numberOfPages) {
 		this.data = data;
-		this.totalItems = totalItems;
+		this.total = total;
 		this.pageIndex = pageIndex;
-		this.totalPages = totalPages;
+		this.numberOfPages = numberOfPages;
 	}
 }

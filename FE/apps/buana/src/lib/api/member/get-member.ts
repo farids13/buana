@@ -6,14 +6,24 @@ import { useQuery } from "@tanstack/react-query";
 
 export const getMemberKey = "getMember";
 
-export const useGetEventAddress = (params?: PaginatedParams) => {
+export const useGetMembers = (params?: PaginatedParams) => {
   return useQuery({
     queryKey: [getMemberKey, params],
     queryFn: async () => {
-      const res = await httpClient.get("/members", {
-        params,
-      });
-      return createPaginatedResponseSchema(memberSchema).parse(res.data);
+      try {
+        const res = await httpClient.get("/members", {
+          params,
+        });
+        console.log("Response dari API:", res.data);
+        
+        const parsed = createPaginatedResponseSchema(memberSchema).parse(res.data);
+        console.log("Data setelah parsing:", parsed);
+        
+        return parsed;
+      } catch (error) {
+        console.error("Error dalam useGetMembers:", error);
+        throw error;
+      }
     },
   });
 };

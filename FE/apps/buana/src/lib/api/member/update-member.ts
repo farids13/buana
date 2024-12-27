@@ -17,7 +17,7 @@ export const useUpdateMember = () => {
         onSuccess: () => {
             void queryClient.invalidateQueries({queryKey: [getMemberKey]})
             void queryClient.invalidateQueries({queryKey: [getDetailMemberKey]})
-            router.push("/data-master/member");
+            router.push("/members");
             toast.success("Member updated successfully");
         },
     });
