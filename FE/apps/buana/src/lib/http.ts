@@ -32,10 +32,12 @@ httpClient.interceptors.response.use(
         case 401:
           message = "Sesi anda telah berakhir, silahkan login kembali";
           // Redirect ke halaman login
-          window.location.href = '/login';
+          window.location.href = '/auth/sign-in';
           break;
         case 403:
-          message = "Anda tidak memiliki akses";
+          message = "Anda tidak memiliki akses, silahkan login kembali";
+          useAuthStore.getState().logout(); 
+          window.location.href = '/auth/sign-in';
           break;
         case 404:
           message = "Data tidak ditemukan";
