@@ -1,4 +1,4 @@
-# Aplikasi Manajemen Member
+# Aplikasi Buana
 
 Aplikasi web untuk mengelola data member organisasi.
 
@@ -38,8 +38,33 @@ Data member yang disimpan:
 
 ## Cara Menjalankan Aplikasi
 
+### Frontend
+1. Pastikan Node.js sudah terinstall
+2. Clone repository
+3. Masuk ke direktori frontend
+4. Install dependencies:
+```bash
+npm install
+```
+5. Jalankan aplikasi dengan perintah:
+```bash
+cd FE
+npm run dev:buana
+```
+
 ### Backend
-1. Pastikan Java dan MySQL sudah terinstall
-2. Buat database MySQL
+1. Pastikan Java dan PostgreSQL sudah terinstall
+2. Buat database PostgreSQL
 3. Sesuaikan konfigurasi database di `application.properties`
 4. Jalankan aplikasi dengan perintah:
+
+```bash
+cd BE
+mvn clean install
+```
+
+```bash
+cd BE
+mvn spring-boot:run
+```
+
