@@ -15,7 +15,7 @@ Aplikasi web untuk mengelola data member organisasi.
 
 ### Backend
 - Java Spring Boot
-- MySQL Database
+- PostgreSQL
 - Swagger untuk dokumentasi API
 
 ### Frontend  
