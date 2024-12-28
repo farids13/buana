@@ -91,10 +91,10 @@ const Member = (): ReactElement => {
             onPage={onPageChange}
             first={pageIndex * pageSize}
           >
-            <Column field="id" header={t('ID')} style={{ width: '10%' }}></Column>
             <Column field="name" header={t('Name')}  style={{ width: '25%' }}></Column>
             <Column field="email" header={t('Email')}  style={{ width: '25%' }}></Column>
             <Column field="position" header={t('Position')}  style={{ width: '20%' }}></Column>
+            <Column field="superior" header={t('Superior')}  style={{ width: '20%' }}></Column>
             <Column field="departement" header={t('Department')}  style={{ width: '10%' }}></Column>
             <Column 
               body={(rowData) => (

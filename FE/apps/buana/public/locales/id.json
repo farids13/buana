@@ -88,5 +88,8 @@
     "Already have an account?": "Sudah punya akun?",
     "Password must be at least 8 characters": "Password minimal 8 karakter",
     "Name must be at least 3 characters": "Nama minimal 3 karakter",
-    "Invalid email": "Email tidak valid"
+    "Invalid email": "Email tidak valid",
+
+    "Profile Image": "Foto Profil",
+    "Image Profile": "Foto Profil"
 }

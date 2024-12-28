@@ -19,6 +19,9 @@ public class UpdateMemberDto {
         @Schema(description = "Departement")
         String departement,
 
+        @Schema(description = "Image URL")
+        String imgUrl,
+
         @Schema(description = "Superior")
         String superior
     ) {}

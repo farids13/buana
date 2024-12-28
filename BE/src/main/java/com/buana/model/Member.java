@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,13 +55,15 @@ public class Member {
     private String departement;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "superior_id", columnDefinition = "VARCHAR(36)")
     private Member superior;
     
-    @Column(name = "img_url")
+    @Column(name = "img_url", columnDefinition = "TEXT")
     private String imgUrl;
 
     @OneToMany(mappedBy = "superior")
+    @JsonManagedReference
     @JsonIgnore
     private List<Member> memberUsers;
 

@@ -7,20 +7,21 @@ export const memberSchema = z.object({
   phone: z.string(),
   position: z.string(),
   departement: z.string(),
-  superior: z.string().nullable(),
+  superior: z.string().nullable().optional(),
   imgUrl: z.string().nullable(),
 });
+
 
 export type Member = z.infer<typeof memberSchema>;
 
 export const memberFormSchema = z.object({
-  name: z.string().min(3),
-  email: z.string().email(),
-  phone: z.string().regex(/^\+?[0-9]+$/).min(8).max(16),
-  position: z.string(),
-  departement: z.string(),
-  superior: z.string().uuid(),
-  imgUrl: z.string()
+  name: z.string().min(1, "Nama wajib diisi"),
+  email: z.string().email("Email tidak valid"),
+  phone: z.string().min(1, "Nomor telepon wajib diisi"),
+  position: z.string().min(1, "Jabatan wajib diisi"),
+  departement: z.string().min(1, "Departemen wajib diisi"),
+  superior: z.string().optional(),
+  imgUrl: z.string().optional()
 });
 
 export type MemberForm = z.infer<typeof memberFormSchema>;

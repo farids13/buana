@@ -8,5 +8,6 @@ public record InsertMemberDto(
     @Schema(description = "Phone") String phone,
     @Schema(description = "Position") String position,
     @Schema(description = "Departement") String departement,
+    @Schema(description = "Image URL") String imgUrl,
     @Schema(description = "Superior") String superior
 ) {}

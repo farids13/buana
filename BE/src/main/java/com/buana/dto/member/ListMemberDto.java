@@ -1,7 +1,11 @@
 package com.buana.dto.member;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ListMemberDto {
     
     @Schema(description = "ID")
@@ -18,6 +22,9 @@ public class ListMemberDto {
 
     @Schema(description = "Position")
     private String position;
+
+    @Schema(description = "Image URL")
+    private String imgUrl;
 
     @Schema(description = "Departement")
     private String departement;
