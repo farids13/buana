@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import React from "react";
 
-//asdasd
-//asdasd
-// ini 3
+//perubahan 1
+//perubahan 2
+//perubahan 3
 interface LandingLayoutProps {
   children: React.ReactNode;
 }
