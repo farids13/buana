@@ -4,6 +4,8 @@ import type { ReactElement } from "react";
 import React from "react";
 
 //perubahan 1
+// nambah 2
+// nambah 3
 
 interface LandingLayoutProps {
   children: React.ReactNode;
