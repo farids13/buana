@@ -3,12 +3,15 @@ import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import React from "react";
 
+//asdasd
+//asdasd
+// ini 3
 interface LandingLayoutProps {
   children: React.ReactNode;
 }
 
 export const metadata: Metadata = {
-  title: "Notulensia",
+  title: "Buana",
   icons: {
     icon: "/favicon.ico",
   },
