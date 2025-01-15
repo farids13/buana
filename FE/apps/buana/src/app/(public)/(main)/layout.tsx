@@ -8,7 +8,7 @@ interface LandingLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: "Notulensia",
+  title: "Buana",
   icons: {
     icon: "/favicon.ico",
   },

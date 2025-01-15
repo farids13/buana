@@ -8,7 +8,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 export const metadata: Metadata = {
-  title: "Notulensia",
+  title: "Buana",
   icons: {
     icon: "/favicon.ico",
   },
